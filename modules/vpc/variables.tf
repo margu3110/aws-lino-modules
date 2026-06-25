@@ -16,7 +16,9 @@ variable "public_subnet_2_cidr" {
 
 variable "tags" {
   description = "Common tags applied to all resources"
-  type        = map(string)
-
-  default = {}
+  type = object({
+    Environment = string
+    Persistence = string
+    TTL         = string
+  })
 }
