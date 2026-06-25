@@ -17,7 +17,7 @@ resource "aws_internet_gateway" "this" {
   tags = merge(
     var.tags,
     {
-        Name = "${var.name}-vpc"
+        Name = "${var.name}-igw"
     }   
   )
 }
@@ -31,7 +31,7 @@ resource "aws_subnet" "public_1" {
   tags = merge(
     var.tags,
     {
-        Name = "${var.name}-vpc"
+        Name = "${var.name}-public-1"
     }   
   )
 }
@@ -45,7 +45,7 @@ resource "aws_subnet" "public_2" {
   tags = merge(
     var.tags,
     {
-        Name = "${var.name}-vpc"
+        Name = "${var.name}-public-2"
     }   
   )
 }
@@ -61,7 +61,7 @@ resource "aws_route_table" "public" {
   tags = merge(
     var.tags,
     {
-        Name = "${var.name}-vpc"
+        Name = "${var.name}-public"
     }   
   )
 }
