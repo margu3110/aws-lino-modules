@@ -11,9 +11,12 @@ resource "aws_vpc" "this" {
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
 
-  tags = {
-    Name = "${var.name}-igw"
-  }
+  tags = merge(
+    var.tags,
+    {
+        Name = "${var.name}-vpc"
+    }   
+  )
 }
 
 resource "aws_subnet" "public_1" {
