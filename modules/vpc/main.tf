@@ -3,9 +3,12 @@ resource "aws_vpc" "this" {
   enable_dns_hostnames = true
   enable_dns_support   = true
 
-  tags = {
-    Name = "${var.name}-vpc"
-  }
+  tags = merge(
+    var.tags,
+    {
+        Name = "${var.name}-vpc"
+    }   
+  )
 }
 
 resource "aws_internet_gateway" "this" {
@@ -25,9 +28,12 @@ resource "aws_subnet" "public_1" {
   availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
 
-  tags = {
-    Name = "${var.name}-public-1"
-  }
+  tags = merge(
+    var.tags,
+    {
+        Name = "${var.name}-vpc"
+    }   
+  )
 }
 
 resource "aws_subnet" "public_2" {
@@ -36,9 +42,12 @@ resource "aws_subnet" "public_2" {
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
 
-  tags = {
-    Name = "${var.name}-public-2"
-  }
+  tags = merge(
+    var.tags,
+    {
+        Name = "${var.name}-vpc"
+    }   
+  )
 }
 
 resource "aws_route_table" "public" {
@@ -49,9 +58,12 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.this.id
   }
 
-  tags = {
-    Name = "${var.name}-public"
-  }
+  tags = merge(
+    var.tags,
+    {
+        Name = "${var.name}-vpc"
+    }   
+  )
 }
 
 resource "aws_route_table_association" "public_1" {
